@@ -4,19 +4,19 @@ This is the core system for a basic algorithmic trading platform.
 
 ## Things to do (TODO):
 - Implement multi-threading 
--- Wrap the Trader class in a service to handle multiple threads with each thread containing a Trader object
+	- Wrap the Trader class in a service to handle multiple threads with each thread containing a Trader object
 
 - Storage
--- Create a database for storage of trading operations
--- Create a database to store market Data
+	- Create a database for storage of trading operations
+	- Create a database to store market Data
 
 - Market data connections
--- Add an HTTP market data service
--- Create a market data replay service to be used for back testing
+	- Add an HTTP market data service
+	- Create a market data replay service to be used for back testing
 
 - Trading strategies
--- Investigate various tradung strategies
--- Abstract the implementation of tradin strategies so that future strategies can be created/stored
+	- Investigate various tradung strategies
+	- Abstract the implementation of tradin strategies so that future strategies can be created/stored
 
 ## Structure
 
