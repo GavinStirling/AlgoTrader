@@ -18,6 +18,8 @@ namespace AlgoTrader.api.Services
             string url = "https://api.example.com/placeOrderHere";
             var content = JsonConvert.SerializeObject(tradeOrder);
             var response = await _httpClient.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"));
+
+            return response.IsSuccessStatusCode;
         }
     }
 }

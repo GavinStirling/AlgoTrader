@@ -1,4 +1,5 @@
-﻿using AlgoTrader.api.TradingTools;
+﻿using AlgoTrader.api.Services;
+using AlgoTrader.api.TradingTools;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlgoTrader.api.Controllers
@@ -7,6 +8,14 @@ namespace AlgoTrader.api.Controllers
     [Route("/trading")]
     public class TradingController : ControllerBase
     {
+        /*
+         * TODO
+         * 
+         * - Change the controller to be able to manage a trading service which can create multiple trader instances (multiple threads)
+         * 
+         * 
+         */
+        
         private readonly Trader _trader;
 
         public TradingController(Trader trader)
@@ -18,8 +27,15 @@ namespace AlgoTrader.api.Controllers
         {
             try
             {
-                var result = _trader.RunAsync(symbol);
-                return Ok(result);
+                // Create new cancellation token
+                var cts = new CancellationTokenSource();
+
+                // Create a new market data stream and connect to the requested symbol
+                IMarketDataStreamService marketDataStream = new MarketDataStreamService();
+                await marketDataStream.ConnectAsync($"example-uri.com/{symbol}", cts.Token);
+          
+                _trader.SubscribeToMarketData(marketDataStream);
+                return Ok();
             }
             catch (Exception ex)
             {

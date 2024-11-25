@@ -2,6 +2,8 @@
 
 This is the core system for a basic algorithmic trading platform.
 
+_This project is currently a work in progress._
+
 ## Things to do (TODO):
 
 - Storage
